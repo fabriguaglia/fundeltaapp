@@ -14,6 +14,22 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleLinkClick = () => {
+    // Cerrar el offcanvas
+    const offcanvasElement = document.getElementById('offcanvasRight');
+    if (offcanvasElement) {
+      const offcanvas = window.bootstrap?.Offcanvas?.getInstance(offcanvasElement);
+      if (offcanvas) {
+        offcanvas.hide();
+      }
+    }
+    
+    // Refrescar la página después de un pequeño delay para que el offcanvas se cierre
+    setTimeout(() => {
+      window.location.reload();
+    }, 300);
+  };
+
   return (
     <header
       className={`d-flex justify-content-between align-items-center px-4 py-3 fixed-top w-100 transition`}
@@ -41,19 +57,19 @@ export default function Header() {
           <div className="offcanvas-body">
             <ul className="list-unstyled d-flex flex-column gap-4">
               <li className="d-flex align-items-center py-2">
-                <Link className="text-black text-decoration-none fonttext fs-6" to="/contacto" style={{lineHeight: 1}}>Contacto</Link>
+                <Link className="text-black text-decoration-none fonttext fs-6" to="/contacto" onClick={handleLinkClick} style={{lineHeight: 1}}>Contacto</Link>
               </li>
               <li className="d-flex align-items-center py-2">
-                <Link className="text-black text-decoration-none fonttext fs-6" to="/informes" style={{lineHeight: 1}}>Informes</Link>
+                <Link className="text-black text-decoration-none fonttext fs-6" to="/informes" onClick={handleLinkClick} style={{lineHeight: 1}}>Informes</Link>
               </li>
               <li className="d-flex align-items-center py-2">
-                <Link className="text-black text-decoration-none fonttext fs-6" to="/datos" style={{lineHeight: 1}}>Datos</Link>
+                <Link className="text-black text-decoration-none fonttext fs-6" to="/datos" onClick={handleLinkClick} style={{lineHeight: 1}}>Datos</Link>
               </li>
               <li className="d-flex align-items-center py-2">
-                <Link className="text-black text-decoration-none fonttext fs-6" to="/propuestas" style={{lineHeight: 1}}>Propuestas</Link>
+                <Link className="text-black text-decoration-none fonttext fs-6" to="/propuestas" onClick={handleLinkClick} style={{lineHeight: 1}}>Propuestas</Link>
               </li>
               <li className="d-flex align-items-center py-2">
-                <Link className="text-black text-decoration-none fonttext fs-6" to="/acuerdos" style={{lineHeight: 1}}>Acuerdos</Link>
+                <Link className="text-black text-decoration-none fonttext fs-6" to="/acuerdos" onClick={handleLinkClick} style={{lineHeight: 1}}>Acuerdos</Link>
               </li>
             </ul>
           </div>
