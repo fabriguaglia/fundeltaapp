@@ -74,7 +74,8 @@ function Menu() {
               reverse: false,
             },
           ].map(({ src, title, text, reverse }, i) => (
-            <div className={`row align-items-center ${reverse ? "flex-md-row-reverse" : ""} mb-5`} key={i}>
+             <>
+             <div className={`row align-items-center ${reverse ? "flex-md-row-reverse" : ""} `} key={i}>
               <div className="col-12 col-md-4 mb-3 mb-md-0">
                 <div className="ratio ratio-1x1">
                   <img
@@ -88,8 +89,9 @@ function Menu() {
                 <h3 className="fonttext">{title}</h3>
                 <p>{text}</p>
               </div>
-              <br className='mt-1 black'/>
             </div>
+            <hr />
+            </>
           ))}
         </section>
       </main>
