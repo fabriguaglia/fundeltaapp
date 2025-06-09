@@ -1,0 +1,194 @@
+/* Contact.css */
+.contact-container {
+  min-height: 100vh;
+  background-image: url('https://cloudfront-us-east-1.images.arcpublishing.com/infobae/G3RGICDSOVAXLAUYJYW3EO4MVQ.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* Overlay opcional para mejorar la legibilidad del contenido */
+.contact-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4); /* Overlay oscuro semi-transparente */
+  z-index: 1;
+}
+
+/* Contenido por encima del overlay */
+.contact-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  padding-top: 6rem;
+  color: white;
+  text-align: center;
+}
+
+/* Alternativa sin overlay */
+.contact-container-light {
+  min-height: 100vh;
+  background-image: url('https://cloudfront-us-east-1.images.arcpublishing.com/infobae/G3RGICDSOVAXLAUYJYW3EO4MVQ.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 2rem;
+  padding-top: 6rem;
+  text-align: center;
+}
+
+/* Estilos para el formulario de contacto */
+.contact-form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  height: fit-content;
+  text-align: left; /* Alinear contenido del formulario a la izquierda */
+}
+
+.contact-form h3 {
+  color: #ffffff;
+  font-weight: 600;
+  text-align: center;
+}
+
+.contact-form .form-label {
+  color: #ffffff;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  text-align: left; /* Alinear labels específicamente a la izquierda */
+  display: block; /* Asegurar que sea un elemento de bloque */
+}
+
+.contact-form .form-control,
+.contact-form .form-select {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.contact-form .form-control:focus,
+.contact-form .form-select:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.contact-form .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-form .form-select option {
+  background: #333;
+  color: #fff;
+}
+
+.contact-form .btn-primary {
+  background: linear-gradient(45deg, #69932D, #5a7e26);
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.contact-form .btn-primary:hover {
+  background: linear-gradient(45deg, #5a7e26, #4d6b21);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(105, 147, 45, 0.3);
+}
+
+/* Estilos para el contenedor del mapa */
+.map-container {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  height: fit-content;
+}
+
+.map-container h3 {
+  color: #ffffff;
+  font-weight: 600;
+  text-align: center;
+}
+
+.map-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.map-wrapper iframe {
+  filter: grayscale(20%) contrast(1.1);
+  transition: filter 0.3s ease;
+}
+
+.map-wrapper:hover iframe {
+  filter: grayscale(0%) contrast(1.2);
+}
+
+/* Estilos para las columnas de contacto */
+.contact-item {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
+  height: 100%;
+}
+
+.contact-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.contact-item svg {
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-item h5 {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.contact-item p {
+  color: #f8f9fa;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* Para dispositivos móviles - background attachment fixed puede causar problemas */
+@media (max-width: 768px) {
+  .contact-container,
+  .contact-container-light {
+    background-attachment: scroll;
+  }
+  
+  .contact-item {
+    margin-bottom: 1rem;
+  }
+}
