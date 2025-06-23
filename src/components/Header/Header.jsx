@@ -57,6 +57,9 @@ export default function Header() {
           <div className="offcanvas-body">
             <ul className="list-unstyled d-flex flex-column gap-4">
               <li className="d-flex align-items-center py-2">
+                <Link className="text-black text-decoration-none fonttext fs-6" to="/" onClick={handleLinkClick} style={{lineHeight: 1}}>Inicio</Link>
+              </li>
+              <li className="d-flex align-items-center py-2">
                 <Link className="text-black text-decoration-none fonttext fs-6" to="/contacto" onClick={handleLinkClick} style={{lineHeight: 1}}>Contacto</Link>
               </li>
               <li className="d-flex align-items-center py-2">

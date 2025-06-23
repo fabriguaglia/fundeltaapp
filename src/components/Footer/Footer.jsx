@@ -24,16 +24,13 @@ function Footer() {
           <div className="col-12 col-md-4">
             <ul className="nav justify-content-center justify-content-md-end">
               <li className="nav-item">
-                <a href="#" className="nav-link px-2 text-white fonttext">Donar</a>
+                <a href="/donar" className="nav-link px-2 text-white fonttext">Donar</a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link px-2 text-white fonttext">Contacto</a>
+                <a href="/contacto" className="nav-link px-2 text-white fonttext">Contacto</a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link px-2 text-white fonttext">Universidad</a>
-              </li>
-              <li className="nav-item">
-                <a href="#" className="nav-link px-2 text-white fonttext">Blog</a>
+                <a href="https://undelta.edu.ar/" className="nav-link px-2 text-white fonttext">UnDelta</a>
               </li>
             </ul>
           </div>
