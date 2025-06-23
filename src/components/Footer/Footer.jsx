@@ -1,5 +1,5 @@
 import React from 'react'
-import Logopng from './logo UNDELTA PNG blanco.png'
+import Logopng from './logofundelta.png'
 
 function Footer() {
   return (
@@ -17,7 +17,7 @@ function Footer() {
                 src={Logopng}
                 alt="Logo"
                 className="img-fluid"
-                style={{ maxHeight: '120px' }}
+                style={{ maxHeight: '40px' }}
               />
             </a>
           </div>

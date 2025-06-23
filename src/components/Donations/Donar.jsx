@@ -1,7 +1,155 @@
-import React from 'react'
-import './Donar.css' // Importar el archivo CSS
+import React, { useEffect, useState } from 'react'
+import './Donar.css'
 
 function Donations() {
+  const [paymentData, setPaymentData] = useState({
+    amount: 1000,
+    firstName: '',
+    lastName: '',
+    email: ''
+  });
+  
+  const [paymentBrickController, setPaymentBrickController] = useState(null);
+
+  useEffect(() => {
+    // Cargar el script de Mercado Pago si no está cargado
+    if (!window.MercadoPago) {
+      const script = document.createElement('script');
+      script.src = 'https://sdk.mercadopago.com/js/v2';
+      script.onload = initializeMercadoPago;
+      document.head.appendChild(script);
+    } else {
+      initializeMercadoPago();
+    }
+
+    return () => {
+      // Cleanup: destruir el brick al desmontar el componente
+      if (paymentBrickController) {
+        paymentBrickController.unmount();
+      }
+    };
+  }, []);
+
+  const initializeMercadoPago = () => {
+    const mp = new window.MercadoPago('YOUR_PUBLIC_KEY', {
+      locale: 'es'
+    });
+    
+    const bricksBuilder = mp.bricks();
+    renderPaymentBrick(bricksBuilder);
+  };
+
+  const renderPaymentBrick = async (bricksBuilder) => {
+    // Limpiar contenedor antes de renderizar
+    const container = document.getElementById('paymentBrick_container');
+    if (container) {
+      container.innerHTML = '';
+    }
+
+    const settings = {
+      initialization: {
+        amount: paymentData.amount,
+        preferenceId: "<PREFERENCE_ID>", // Reemplazar con el ID real de preferencia
+        payer: {
+          firstName: paymentData.firstName,
+          lastName: paymentData.lastName,
+          email: paymentData.email,
+        },
+      },
+      customization: {
+        visual: {
+          style: {
+            theme: "dark",
+          },
+        },
+        paymentMethods: {
+          creditCard: "all",
+          debitCard: "all",
+          ticket: "all",
+          bankTransfer: "all",
+          atm: "all",
+          onboarding_credits: "all",
+          wallet_purchase: "all",
+          maxInstallments: 1
+        },
+      },
+      callbacks: {
+        onReady: () => {
+          console.log('Payment Brick está listo');
+        },
+        onSubmit: ({ selectedPaymentMethod, formData }) => {
+          return new Promise((resolve, reject) => {
+            fetch("/process_payment", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            })
+              .then((response) => response.json())
+              .then((response) => {
+                console.log('Pago procesado:', response);
+                resolve();
+              })
+              .catch((error) => {
+                console.error('Error al procesar el pago:', error);
+                reject();
+              });
+          });
+        },
+        onError: (error) => {
+          console.error('Error en Payment Brick:', error);
+        },
+      },
+    };
+
+    try {
+      const controller = await bricksBuilder.create(
+        "payment",
+        "paymentBrick_container",
+        settings
+      );
+      setPaymentBrickController(controller);
+    } catch (error) {
+      console.error('Error al crear Payment Brick:', error);
+    }
+  };
+
+  const handleAmountSelect = (amount) => {
+    setPaymentData(prev => ({ ...prev, amount }));
+    // Reinicializar el brick con el nuevo monto solo si está inicializado
+    if (paymentBrickController) {
+      paymentBrickController.unmount();
+      setTimeout(() => initializeMercadoPago(), 300);
+    }
+  };
+
+  const handleCustomAmount = (e) => {
+    const amount = parseInt(e.target.value) || 0;
+    if (amount >= 500) {
+      setPaymentData(prev => ({ ...prev, amount }));
+      // Reinicializar el brick después de un tiempo para evitar múltiples actualizaciones
+      if (paymentBrickController) {
+        clearTimeout(window.customAmountTimeout);
+        window.customAmountTimeout = setTimeout(() => {
+          paymentBrickController.unmount();
+          setTimeout(() => initializeMercadoPago(), 300);
+        }, 1000);
+      }
+    }
+  };
+
+  const handlePayerDataChange = (field, value) => {
+    setPaymentData(prev => ({ ...prev, [field]: value }));
+    // Reinicializar el brick con los nuevos datos del pagador
+    if (paymentBrickController && (field === 'firstName' || field === 'lastName' || field === 'email')) {
+      setTimeout(() => {
+        paymentBrickController.unmount();
+        setTimeout(() => initializeMercadoPago(), 100);
+      }, 500);
+    }
+  };
+
   return (
     <div className="donations-container">
       <div className="donations-content">
@@ -66,119 +214,129 @@ function Donations() {
           </div>
         </div>
 
-        {/* Formulario de donación */}
+        {/* Configuración de donación y Payment Brick */}
         <div className="container mt-5">
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="donation-form">
                 <h3 className="mb-4">Realizar Donación</h3>
-                <form>
+                
+                {/* Configuración básica del donante */}
+                <div className="row mb-4">
+                  <div className="col-md-4 mb-3">
+                    <label htmlFor="firstName" className="form-label">Nombre</label>
+                    <input 
+                      type="text" 
+                      className="form-control" 
+                      id="firstName" 
+                      placeholder="Tu nombre"
+                      value={paymentData.firstName}
+                      onChange={(e) => handlePayerDataChange('firstName', e.target.value)}
+                    />
+                  </div>
+                  <div className="col-md-4 mb-3">
+                    <label htmlFor="lastName" className="form-label">Apellido</label>
+                    <input 
+                      type="text" 
+                      className="form-control" 
+                      id="lastName" 
+                      placeholder="Tu apellido"
+                      value={paymentData.lastName}
+                      onChange={(e) => handlePayerDataChange('lastName', e.target.value)}
+                    />
+                  </div>
+                  <div className="col-md-4 mb-3">
+                    <label htmlFor="email" className="form-label">Email</label>
+                    <input 
+                      type="email" 
+                      className="form-control" 
+                      id="email" 
+                      placeholder="tu@email.com"
+                      value={paymentData.email}
+                      onChange={(e) => handlePayerDataChange('email', e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                {/* Selección de monto */}
+                <div className="mb-4">
+                  <label className="form-label">Monto de la donación</label>
                   <div className="row">
-                    <div className="col-md-6 mb-3">
-                      <label htmlFor="nombre" className="form-label">Nombre completo</label>
-                      <input type="text" className="form-control" id="nombre" placeholder="Tu nombre completo" />
+                    <div className="col-6 col-md-3 mb-2">
+                      <button 
+                        type="button" 
+                        className={`btn w-100 amount-btn ${paymentData.amount === 500 ? 'btn-success' : 'btn-outline-light'}`}
+                        onClick={() => handleAmountSelect(500)}
+                        style={{ 
+                          backgroundColor: paymentData.amount === 500 ? '#69932D' : '',
+                          borderColor: paymentData.amount === 500 ? '#69932D' : '',
+                          color: paymentData.amount === 500 ? 'white' : ''
+                        }}
+                      >
+                        $500
+                      </button>
                     </div>
-                    <div className="col-md-6 mb-3">
-                      <label htmlFor="email" className="form-label">Email</label>
-                      <input type="email" className="form-control" id="email" placeholder="tu@email.com" />
+                    <div className="col-6 col-md-3 mb-2">
+                      <button 
+                        type="button" 
+                        className={`btn w-100 amount-btn ${paymentData.amount === 1000 ? 'btn-success' : 'btn-outline-light'}`}
+                        onClick={() => handleAmountSelect(1000)}
+                        style={{ 
+                          backgroundColor: paymentData.amount === 1000 ? '#69932D' : '',
+                          borderColor: paymentData.amount === 1000 ? '#69932D' : '',
+                          color: paymentData.amount === 1000 ? 'white' : ''
+                        }}
+                      >
+                        $1.000
+                      </button>
+                    </div>
+                    <div className="col-6 col-md-3 mb-2">
+                      <button 
+                        type="button" 
+                        className={`btn w-100 amount-btn ${paymentData.amount === 2500 ? 'btn-success' : 'btn-outline-light'}`}
+                        onClick={() => handleAmountSelect(2500)}
+                        style={{ 
+                          backgroundColor: paymentData.amount === 2500 ? '#69932D' : '',
+                          borderColor: paymentData.amount === 2500 ? '#69932D' : '',
+                          color: paymentData.amount === 2500 ? 'white' : ''
+                        }}
+                      >
+                        $2.500
+                      </button>
+                    </div>
+                    <div className="col-6 col-md-3 mb-2">
+                      <button 
+                        type="button" 
+                        className={`btn w-100 amount-btn ${paymentData.amount === 5000 ? 'btn-success' : 'btn-outline-light'}`}
+                        onClick={() => handleAmountSelect(5000)}
+                        style={{ 
+                          backgroundColor: paymentData.amount === 5000 ? '#69932D' : '',
+                          borderColor: paymentData.amount === 5000 ? '#69932D' : '',
+                          color: paymentData.amount === 5000 ? 'white' : ''
+                        }}
+                      >
+                        $5.000
+                      </button>
                     </div>
                   </div>
-                  
-                  <div className="row">
-                    <div className="col-md-6 mb-3">
-                      <label htmlFor="telefono" className="form-label">Teléfono</label>
-                      <input type="tel" className="form-control" id="telefono" placeholder="+54 11 1234-5678" />
-                    </div>
-                    <div className="col-md-6 mb-3">
-                      <label htmlFor="dni" className="form-label">DNI/CUIT</label>
-                      <input type="text" className="form-control" id="dni" placeholder="12.345.678" />
-                    </div>
+                  <div className="mt-3">
+                    <input 
+                      type="number" 
+                      className="form-control" 
+                      id="montoPersonalizado" 
+                      placeholder="Otro monto" 
+                      min="500"
+                      onChange={handleCustomAmount}
+                    />
                   </div>
+                  <small className="">Monto actual: ${paymentData.amount.toLocaleString('es-AR')}</small>
+                </div>
 
-                  <div className="mb-3">
-                    <label className="form-label">Tipo de donación</label>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input className="form-check-input" type="radio" name="tipoдонacion" id="unica" />
-                          <label className="form-check-label" htmlFor="unica">
-                            Donación única
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input className="form-check-input" type="radio" name="tipoДонacion" id="mensual" />
-                          <label className="form-check-label" htmlFor="mensual">
-                            Donación mensual
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mb-3">
-                    <label className="form-label">Monto de la donación</label>
-                    <div className="row">
-                      <div className="col-6 col-md-3 mb-2">
-                        <button type="button" className="btn btn-outline-light w-100 amount-btn" data-amount="1000">$1.000</button>
-                      </div>
-                      <div className="col-6 col-md-3 mb-2">
-                        <button type="button" className="btn btn-outline-light w-100 amount-btn" data-amount="2500">$2.500</button>
-                      </div>
-                      <div className="col-6 col-md-3 mb-2">
-                        <button type="button" className="btn btn-outline-light w-100 amount-btn" data-amount="5000">$5.000</button>
-                      </div>
-                      <div className="col-6 col-md-3 mb-2">
-                        <button type="button" className="btn btn-outline-light w-100 amount-btn" data-amount="10000">$10.000</button>
-                      </div>
-                    </div>
-                    <div className="mt-3">
-                      <input type="number" className="form-control" id="montoPersonalizado" placeholder="Otro monto" min="100" />
-                    </div>
-                  </div>
-
-                  <div className="mb-3">
-                    <label htmlFor="metodoPago" className="form-label">Método de pago</label>
-                    <select className="form-select" id="metodoPago">
-                      <option value="">Selecciona un método</option>
-                      <option value="tarjeta">Tarjeta de crédito/débito</option>
-                      <option value="transferencia">Transferencia bancaria</option>
-                      <option value="mercadopago">Mercado Pago</option>
-                      <option value="paypal">PayPal</option>
-                    </select>
-                  </div>
-
-                  <div className="mb-3">
-                    <label htmlFor="mensaje" className="form-label">Mensaje (opcional)</label>
-                    <textarea className="form-control" id="mensaje" rows="3" placeholder="Deja un mensaje sobre tu donación..."></textarea>
-                  </div>
-
-                  <div className="mb-3">
-                    <div className="form-check">
-                      <input className="form-check-input" type="checkbox" id="anonimo" />
-                      <label className="form-check-label" htmlFor="anonimo">
-                        Realizar donación anónima
-                      </label>
-                    </div>
-                  </div>
-
-                  <div className="mb-4">
-                    <div className="form-check">
-                      <input className="form-check-input" type="checkbox" id="terminos" required />
-                      <label className="form-check-label" htmlFor="terminos">
-                        Acepto los términos y condiciones y la política de privacidad
-                      </label>
-                    </div>
-                  </div>
-
-                  <button type="submit" className="btn btn-primary btn-lg w-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-heart-fill me-2" viewBox="0 0 16 16">
-                      <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                    </svg>
-                    Donar Ahora
-                  </button>
-                </form>
+                {/* Contenedor del Payment Brick */}
+                <div className="mb-4">
+                  <h4 className="mb-3">Método de Pago</h4>
+                  <div id="paymentBrick_container" style={{ minHeight: '400px' }}></div>
+                </div>
               </div>
             </div>
           </div>
