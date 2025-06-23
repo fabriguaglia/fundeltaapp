@@ -44,7 +44,7 @@ export default function Header() {
       </a>
       <ul className="d-flex gap-4 list-unstyled mb-0 align-items-center">
         <li className="d-flex align-items-center">
-          <Link className="text-white text-decoration-none fonttext" to="/contacto" style={{lineHeight: 1}}>Donar</Link>
+          <Link className="text-white text-decoration-none fonttext" to="/donar" style={{lineHeight: 1}}>Donar</Link>
         </li>
         <li className="d-flex align-items-center">
           <button className="btn text-white fs-4 p-0 border-0 d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style={{backgroundColor: 'transparent', lineHeight: 1, height: '24px', width: '24px'}}>≡</button>

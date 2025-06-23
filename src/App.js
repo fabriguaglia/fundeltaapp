@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Contact from './components/Contact/Contact.jsx';
+import Donations from './components/Donations/Donar.jsx';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Menu />} />
           <Route path="/contacto" element={<Contact />} />
+          <Route path="/donar" element={<Donations />} />
         </Routes>
       <Footer />
     </Router>
