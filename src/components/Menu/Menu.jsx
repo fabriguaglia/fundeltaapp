@@ -1,4 +1,5 @@
 import React from 'react'
+import videofundelta from './video loop 1.mp4'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Menu() {
@@ -6,7 +7,7 @@ function Menu() {
     <>
       <style jsx>{`
         .hero-image {
-          height: 95vh;
+          height: 87vh;
         }
         
         @media (max-width: 768px) {
@@ -22,21 +23,17 @@ function Menu() {
           <div
             className="card text-bg-dark image_cont rounded-0 hero-image"
           >
-            <img
-              src="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/G3RGICDSOVAXLAUYJYW3EO4MVQ.jpg"
-              alt="Imagen principal"
+            <video
+              src={videofundelta}
+              type="video/mp4"
+              alt="Video principal"
               className="w-100 h-100 object-fit-cover"
               style={{ objectFit: 'cover' }}
+              autoPlay
+              loop
+              muted
             />
-            <div className="card-img-overlay d-flex flex-column justify-content-center align-items-center text-center">
-              <h2 className="card-title display-4 fw-bold titletext">Fundación del Delta</h2>
-              <p
-                className="card-text fs-5 mx-auto text-center fonttext"
-                style={{ maxWidth: '800px' }}
-              >
-                Desde la Fundación de la Universidad Nacional del Delta buscamos articular con diferentes actores de la sociedad para generar e impulsar ideas que favorezcan el desarrollo y la integración social
-              </p>
-            </div>
+
           </div>
         </section>
 
