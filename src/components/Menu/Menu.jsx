@@ -7,7 +7,7 @@ function Menu() {
     <>
       <style jsx>{`
         .hero-image {
-          height: 87vh;
+          height: 86.5vh;
         }
         
         @media (max-width: 768px) {
