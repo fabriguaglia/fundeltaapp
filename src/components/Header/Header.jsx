@@ -66,9 +66,6 @@ export default function Header() {
                 <Link className="text-black text-decoration-none fonttext fs-6" to="/informes" onClick={handleLinkClick} style={{lineHeight: 1}}>Informes</Link>
               </li>
               <li className="d-flex align-items-center py-2">
-                <Link className="text-black text-decoration-none fonttext fs-6" to="/datos" onClick={handleLinkClick} style={{lineHeight: 1}}>Datos</Link>
-              </li>
-              <li className="d-flex align-items-center py-2">
                 <Link className="text-black text-decoration-none fonttext fs-6" to="/propuestas" onClick={handleLinkClick} style={{lineHeight: 1}}>Propuestas</Link>
               </li>
               <li className="d-flex align-items-center py-2">
