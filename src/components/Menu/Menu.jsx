@@ -161,6 +161,17 @@ function Menu() {
                     <strong>en una institución referente</strong> del <strong>conocimiento</strong>, la <strong>equidad</strong> y la 
                     <strong>innovación</strong> en la <strong>región</strong> del Delta.
                   </p>
+
+                  <div><h5 className='text-custom-green'><strong>Datos</strong></h5>
+                    <p>
+                      Ponemos a tu disposición <strong>datos clave</strong> sobre el estado y evolución de la educación en nuestra región. 
+                      Nuestro objetivo es proporcionar <strong>información precisa y actualizada</strong> que sirva como herramienta para 
+                      <strong> investigadores</strong>, <strong> educadores</strong>, <strong> formuladores de políticas</strong> y miembros de la comunidad 
+                      interesados en <strong>comprender y mejorar el sistema educativo</strong>. Creemos que el acceso a 
+                      <strong> datos confiables</strong> es fundamental para promover la <strong>transparencia</strong> y fomentar 
+                      <strong> iniciativas basadas en evidencia</strong> que contribuyan al <strong>desarrollo educativo</strong> de nuestra sociedad.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
