@@ -34,10 +34,10 @@ function Menu() {
               alt="Video principal"
               className="w-100 h-100 object-fit-cover"
               style={{ objectFit: 'cover' }}
-              autoPlay
-              loop
+              playsinline
+              autoplay
               muted
-              playsInline
+              loop  
             />
           </div>
         </section>
