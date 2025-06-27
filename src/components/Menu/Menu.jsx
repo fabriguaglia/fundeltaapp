@@ -121,8 +121,8 @@ function Menu() {
               >
                 <div className="accordion-body">
                   <p>
-                    Desde la Fundación <strong>trabajamos</strong> para <strong>acompañar</strong> y <strong>potenciar</strong> a los 
-                    <strong>estudiantes</strong> a través de <strong>diversas</strong> <strong>acciones</strong>:
+                    Desde la Fundación <strong>trabajamos</strong> para <strong>acompañar</strong> y <strong> potenciar </strong> a los 
+                    <strong> estudiantes </strong> a través de <strong>diversas</strong> <strong>acciones</strong>:
                   </p>
                   
                   <div className="mb-4">
@@ -130,7 +130,7 @@ function Menu() {
                       <strong>Promoción de la investigación científica</strong>
                     </h5>
                     <p>
-                      especialmente en temas vinculados a la <strong>educación</strong>, el <strong>ambiente</strong>, 
+                      Especialmente en temas vinculados a la <strong>educación </strong>, el <strong> ambiente </strong>, 
                       el <strong>desarrollo</strong> local y la <strong>innovación</strong> social.
                     </p>
                   </div>
@@ -140,8 +140,8 @@ function Menu() {
                       <strong>Organización de actividades culturales, educativas y de extensión</strong>
                     </h5>
                     <p>
-                      que fortalezcan el <strong>vínculo</strong> entre la <strong>universidad</strong> y 
-                      <strong>su</strong> <strong>comunidad</strong>.
+                      Que fortalezcan el <strong>vínculo</strong> entre la <strong>universidad</strong> y 
+                       <strong> su </strong> <strong>comunidad</strong>.
                     </p>
                   </div>
                   
@@ -150,14 +150,14 @@ function Menu() {
                       <strong>Impulso de alianzas estratégicas</strong>
                     </h5>
                     <p>
-                      con organizaciones del sector privado, <strong>público</strong> y la <strong>sociedad</strong> 
+                      Con organizaciones del sector privado, <strong>público </strong> y la <strong>sociedad </strong> 
                       civil para el <strong>desarrollo</strong> de <strong>proyectos</strong> conjuntos.
                     </p>
                   </div>
                   
                   <p className="mt-4 fw-bold text-custom-green">
                     Nuestro <strong>compromiso</strong> es claro: <strong>contribuir</strong> al <strong>crecimiento</strong> de una 
-                    <strong>universidad</strong> <strong>pública</strong> <strong>joven</strong> que necesita del <strong>esfuerzo</strong> colectivo para transformarse 
+                    <strong> universidad</strong> <strong>pública</strong> <strong>joven</strong> que necesita del <strong>esfuerzo</strong> colectivo para transformarse 
                     <strong>en una institución referente</strong> del <strong>conocimiento</strong>, la <strong>equidad</strong> y la 
                     <strong>innovación</strong> en la <strong>región</strong> del Delta.
                   </p>
