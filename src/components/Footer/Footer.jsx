@@ -3,15 +3,15 @@ import Logopng from './logofundelta.png';
 
 function Footer() {
   const handleInstagramClick = () => {
-    window.open('https://www.instagram.com/undelta', '_blank');
+    window.open('https://www.instagram.com/fundacionundelta/', '_blank');
   };
 
   const handleYouTubeClick = () => {
-    window.open('https://www.youtube.com/@undelta', '_blank');
+    window.open('https://www.youtube.com/@universidaddelta', '_blank');
   };
 
   const handleTikTokClick = () => {
-    window.open('https://www.tiktok.com/@undelta', '_blank');
+    window.open('https://www.tiktok.com/@universidaddelta', '_blank');
   };
 
   return (
