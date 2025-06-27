@@ -39,7 +39,7 @@ export default function Header() {
         zIndex: 1000,
       }}
     >
-      <a href="/" className="icon" rel="noreferrer">
+      <a href="/" className="icon" rel="noreferrer" style={{marginLeft: '-20px'}}>
         <img className="greensock-icon" src={Logo} width="200" alt="Logo" />
       </a>
       <ul className="d-flex gap-4 list-unstyled mb-0 align-items-center">
