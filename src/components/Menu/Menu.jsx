@@ -37,6 +37,7 @@ function Menu() {
               autoPlay
               loop
               muted
+              playsInline
             />
           </div>
         </section>
