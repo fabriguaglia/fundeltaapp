@@ -1,5 +1,6 @@
 import React from 'react'
 import videofundelta from './video loop 1.mp4'
+import Fotodelta from './fotodelta.jpeg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Menu() {
@@ -67,7 +68,7 @@ function Menu() {
                   <div className="row align-items-center">
                     <div className="col-md-5">
                       <img 
-                        src="https://undelta.edu.ar/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-06-at-16.11.45.jpeg" 
+                        src={Fotodelta} 
                         alt="Universidad Nacional del Delta" 
                         className="img-fluid rounded"
                       />
