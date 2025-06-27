@@ -65,14 +65,14 @@ function Menu() {
               >
                 <div className="accordion-body">
                   <div className="row align-items-center">
-                    <div className="col-md-6">
+                    <div className="col-md-5">
                       <img 
                         src="https://undelta.edu.ar/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-06-at-16.11.45.jpeg" 
                         alt="Universidad Nacional del Delta" 
                         className="img-fluid rounded"
                       />
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-7">
                       <p>
                         La <strong>Fundación de la Universidad Nacional del Delta</strong> es una organización sin fines de lucro 
                         creada para acompañar el crecimiento y la consolidación de la Universidad Nacional del Delta, 
@@ -95,10 +95,45 @@ function Menu() {
                       </p>
                     </div>
                   </div>
+
+                  {/* FAQ */}
+                  <div className="mt-5">
+                    <h4 className="text-custom-green"><strong>FAQ</strong></h4>
+                    <ol>
+                      <li><strong className="text-custom-green">¿Qué es FUNDELTA y cuál es su vínculo con la Universidad Nacional del Delta?</strong><br />
+                      FUNDELTA es la Fundación de la Universidad Nacional del Delta. Nació para acompañar, fortalecer y proyectar el crecimiento de esta nueva universidad pública en la región.</li>
+
+                      <li><strong className="text-custom-green">¿Qué tipo de proyectos impulsa la Fundación?</strong><br />
+                      Promovemos investigaciones, programas educativos, actividades culturales y propuestas que contribuyan al desarrollo social, científico y ambiental del Delta y de la Región Metropolitana que lo circunda y enmarca.</li>
+
+                      <li><strong className="text-custom-green">¿Cómo puedo colaborar con la Fundación?</strong><br />
+                      Podés hacer una donación a través de nuestro sitio web o sumarte como organización aliada. Toda colaboración suma para fortalecer la universidad pública.</li>
+
+                      <li><strong className="text-custom-green">¿Dónde se destinan los fondos recaudados?</strong><br />
+                      Cada recurso es gestionado con transparencia y se invierte en proyectos educativos, investigación, becas, actividades comunitarias y fortalecimiento institucional.</li>
+
+                      <li><strong className="text-custom-green">¿Qué relación tiene FUNDELTA con otras organizaciones?</strong><br />
+                      Establecemos acuerdos con entidades públicas, privadas y de la sociedad civil para potenciar nuestras propuestas y ampliar el impacto de nuestras acciones.</li>
+
+                      <li><strong className="text-custom-green">¿Quiénes pueden acceder a los datos y los informes publicados?</strong><br />
+                      Toda la comunidad. La información es de acceso público y está pensada para investigadores, docentes, estudiantes y ciudadanos interesados en la educación.</li>
+
+                      <li><strong className="text-custom-green">¿Cómo se eligen las propuestas que impulsa la Fundación?</strong><br />
+                      Se priorizan aquellas que tienen impacto directo en la comunidad educativa, son innovadoras y se alinean con nuestros ejes estratégicos.</li>
+
+                      <li><strong className="text-custom-green">¿La Fundación entrega becas o apoyos a estudiantes?</strong><br />
+                      Sí, uno de nuestros objetivos es acompañar el trayecto educativo de los estudiantes mediante distintas formas de apoyo, según la disponibilidad de recursos.</li>
+
+                      <li><strong className="text-custom-green">¿Puedo presentar una propuesta o proyecto a la Fundación?</strong><br />
+                      Sí. Si tenés una iniciativa vinculada a la educación, el desarrollo local o la innovación social, podés escribirnos y evaluaremos la posibilidad de acompañarla.</li>
+
+                      <li><strong className="text-custom-green">¿Cómo puedo mantenerme informado sobre las novedades de la Fundación?</strong><br />
+                      Podés seguirnos en nuestras redes sociales y suscribirte a nuestro boletín para recibir noticias, informes y avances de nuestras iniciativas.</li>
+                    </ol>
+                  </div>
                 </div>
               </div>
-            </div>
-            
+            </div> 
             {/* ¿Qué hacemos? */}
             <div className="accordion-item mb-4">
               <h2 className="accordion-header" id="headingWhatWeDo">
