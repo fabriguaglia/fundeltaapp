@@ -6,6 +6,8 @@ import Footer from './components/Footer/Footer.jsx';
 import Contact from './components/Contact/Contact.jsx';
 import Donations from './components/Donations/Donar.jsx';
 import Informes from './components/Informes/Informes.jsx';
+import Propuestas from './components/Propuestas/Propuestas.jsx';
+import Acuerdos from './components/Acuerdos/Acuerdos.jsx';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/contacto" element={<Contact />} />
           <Route path="/donar" element={<Donations />} />
           <Route path="/informes" element={<Informes />} />
+          <Route path="/propuestas" element={<Propuestas />} />
+          <Route path="/acuerdos" element={<Acuerdos />} />
         </Routes>
       <Footer />
     </Router>

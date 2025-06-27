@@ -1,0 +1,16 @@
+/* Header.css */
+#offcanvasRight {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+#offcanvasRight .offcanvas-header,
+#offcanvasRight .offcanvas-body,
+#offcanvasRight .offcanvas-body a {
+  color: #fff !important;
+}
+
+/* Cambia el ícono de cerrar a blanco */
+.btn-close.btn-close-white {
+  filter: invert(1);
+}

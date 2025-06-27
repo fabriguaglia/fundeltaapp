@@ -1,0 +1,102 @@
+.acuerdos-container {
+  min-height: 100vh;
+  background-image: url('https://cloudfront-us-east-1.images.arcpublishing.com/infobae/G3RGICDSOVAXLAUYJYW3EO4MVQ.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.acuerdos-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
+
+.acuerdos-content {
+  position: relative;
+  z-index: 2;
+  padding: 4rem 2rem;
+  color: #fff;
+  text-align: center;
+}
+
+.acuerdos-text {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.acuerdos-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.acuerdo-item {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.acuerdo-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255,255,255,0.2);
+}
+
+.acuerdo-item h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.acuerdo-fecha {
+  display: block;
+  margin-bottom: 1rem;
+  color: #ddd;
+  font-size: 0.9rem;
+}
+
+.acuerdo-resumen {
+  flex: 1;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  color: #eee;
+}
+
+.acuerdo-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #69932D, #5a7e26);
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.acuerdo-btn:hover {
+  background: linear-gradient(45deg, #5a7e26, #4d6b21);
+  box-shadow: 0 8px 25px rgba(105,147,45,0.3);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .acuerdos-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .acuerdos-container {
+    background-attachment: scroll;
+  }
+}
