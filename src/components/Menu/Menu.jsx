@@ -1,5 +1,6 @@
 import React from 'react'
 import videofundelta from './video loop 1.mp4'
+import videofundeltaw from './video-loop-1.webm'
 import Fotodelta from './fotodelta.jpeg'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -29,8 +30,8 @@ function Menu() {
             className="card text-bg-dark image_cont rounded-0 hero-image"
           >
             <video
-              src={videofundelta}
-              type="video/mp4"
+              src={videofundeltaw}
+              type="video/webm"
               alt="Video principal"
               className="w-100 h-100 object-fit-cover"
               style={{ objectFit: 'cover' }}
