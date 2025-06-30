@@ -209,6 +209,10 @@
   box-shadow: 0 8px 25px rgba(105, 147, 45, 0.3);
 }
 
+#mpitem {
+  margin-bottom: 0;
+}
+
 /* Para dispositivos móviles */
 @media (max-width: 768px) {
   .donations-container {
