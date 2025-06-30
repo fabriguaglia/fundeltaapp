@@ -131,8 +131,6 @@ function Contact() {
                     <select className="form-select" id="motivo">
                       <option value="">Selecciona un motivo</option>
                       <option value="informacion">Información general</option>
-                      <option value="cotizacion">Solicitar cotización</option>
-                      <option value="soporte">Soporte técnico</option>
                       <option value="otro">Otro</option>
                     </select>
                   </div>
